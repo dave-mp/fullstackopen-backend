@@ -1,0 +1,28 @@
+{
+  "name": "fullstackopen-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dave-mp/fullstackopen-backend.git"
+  },
+  "author": "dave-mp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dave-mp/fullstackopen-backend/issues"
+  },
+  "homepage": "https://github.com/dave-mp/fullstackopen-backend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
