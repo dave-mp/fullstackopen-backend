@@ -1,7 +1,26 @@
 import express, { json } from "express";
+import morgan from "morgan";
 const app = express();
 
 app.use(json());
+app.use(
+  morgan((tokens, req, res) => {
+    morgan.token("body", function (req, res) {
+      return JSON.stringify(req.body);
+    });
+
+    return [
+      tokens.method(req, res),
+      tokens.url(req, res),
+      tokens.status(req, res),
+      tokens.res(req, res, "content-length"),
+      "-",
+      tokens["response-time"](req, res),
+      "ms",
+      tokens.body(req, res),
+    ].join(" ");
+  })
+);
 
 let persons = [
   {
