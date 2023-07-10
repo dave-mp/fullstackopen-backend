@@ -7,7 +7,11 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../fullstackopen/part3/phonebook/ && npm run build && cp -r build ../../../fullstackopen-backend",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs"
   },
   "repository": {
     "type": "git",
@@ -20,10 +24,12 @@
   },
   "homepage": "https://github.com/dave-mp/fullstackopen-backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.3.1",
     "nodemon": "^2.0.22"
   }
 }

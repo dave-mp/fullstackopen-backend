@@ -1,8 +1,13 @@
 import express, { json } from "express";
 import morgan from "morgan";
+import cors from "cors";
 const app = express();
 
+app.use(cors());
 app.use(json());
+
+app.use(express.static("build"));
+
 app.use(
   morgan((tokens, req, res) => {
     morgan.token("body", function (req, res) {
@@ -56,11 +61,6 @@ app.get("/api/persons", (request, response) => {
   response.json(persons);
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 app.get("/api/persons/:id", (request, response) => {
   const id = +request.params.id;
   const person = persons.find((person) => person.id === id);
@@ -108,4 +108,9 @@ app.post("/api/persons", (request, response) => {
   persons = persons.concat(person);
 
   response.json(person);
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
